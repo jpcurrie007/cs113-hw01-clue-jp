@@ -50,7 +50,7 @@ public class myClueSolver {
      */
     public static void main(String[] args) {
         // DECLARATION + INITIALIZATION
-        int answerSet, solution, murder, weapon , location;
+        int answerSet, solution , murder = 1, weapon = 1, location = 1;
         Theory answer;
         AssistantJack jack;
         Scanner keyboard = new Scanner(System.in);
@@ -65,22 +65,17 @@ public class myClueSolver {
         // PROCESSING
         jack = new AssistantJack(answerSet);
 
-        weapon = 1;
-        location = 10;
-        murder = 6;
         solution = jack.checkAnswer(weapon, location, murder);
-
-        do {
-            weapon++;
+        while (solution != 0) {
+            if (solution == 1) {
+                weapon++;
+            } else if (solution == 2) {
+                location++;
+            } else {
+                murder++;
+            }
             solution = jack.checkAnswer(weapon, location, murder);
-        }while(solution != 0);
-
-        /*do {
-            weapon = random.nextInt(6) + 1;
-            location = random.nextInt(10) + 1;
-            murder = random.nextInt(6) + 1;
-            solution = jack.checkAnswer(weapon, location, murder);
-        } while (solution != 0);*/
+        }
 
         answer = new Theory(weapon, location, murder);
 
